@@ -4,8 +4,8 @@ import type { Metadata, Viewport } from "next";
 import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 
-import {Navbar} from "@/components/Navbar"
-import { ThemeSwitcher } from "@/components/ThemeSwitcher";
+import {Navbar} from "@/components/UI/Navbar"
+import { ThemeSwitcher } from "@/components/UI/ThemeSwitcher";
 
 export const metadata: Metadata = {
     title: {
@@ -18,12 +18,6 @@ export const metadata: Metadata = {
     },
 };
 
-export const viewport: Viewport = {
-    themeColor: [
-        { media: "(prefers-color-scheme: light)", color: "white" },
-        { media: "(prefers-color-scheme: dark)", color: "black" },
-    ],
-};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (

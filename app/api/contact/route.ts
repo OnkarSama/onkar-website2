@@ -3,15 +3,17 @@ import nodemailer from "nodemailer";
 interface ContactFormData {
     name: string;
     email: string;
+    subject: string;
     message: string;
+    type: string;
 }
 
 export async function POST(req: Request): Promise<Response> {
     try {
         const data: ContactFormData = await req.json();
-        const { name, email, message } = data;
+        const { name, email, subject, message, type } = data;
 
-        if (!name || !email || !message) {
+        if (!name || !email || !subject || !message || !type) {
             return new Response(JSON.stringify({ error: "Missing fields" }), {
                 status: 400,
             });
@@ -32,8 +34,8 @@ export async function POST(req: Request): Promise<Response> {
             from: `"Website Contact" <${process.env.EMAIL_USER}>`,
             to: process.env.EMAIL_USER,
             replyTo: email,
-            subject: `New Contact Message from ${name}`,
-            text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+            subject: `${subject} from ${name}`,
+            text: `Name: ${name}\nEmail: ${email}\nType of Inquiry: ${type}\n\nMessage:\n${message}`,
         });
 
         return new Response(JSON.stringify({ success: true }), { status: 200 });
