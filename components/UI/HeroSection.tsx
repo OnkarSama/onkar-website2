@@ -315,7 +315,7 @@ export default function HeroSection() {
                     <div className="fu1" style={{ marginBottom: 22 }}>
             <span className="hero-tag">
               <span style={{ color: clr.primary }}>◉</span>
-              CS + AI @ Adelphi · PhD Track
+              CS + AI @ Adelphi · PhD Applicant
             </span>
                     </div>
 
