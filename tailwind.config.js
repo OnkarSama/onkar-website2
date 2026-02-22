@@ -27,22 +27,32 @@ const config = {
             defaultExtendTheme: "dark",
             layout: {},
             themes: {
+                light: {
+                    layout: {},
+                    colors: {
+                        background: "#F3E8FF", // Soft lavender
+                        subheading: "#7C3AED", // Purple accents (formerly foreground)
+                        heading: "#5B21B6", // Darker purple for headings
+                        primary: "#8B5CF6",
+                        secondary: "#A78BFA",
+                        hover: "#E9D5FF", // Light purple hover effect
+                        text: "#374151", // Dark gray text color for light mode
+                    },
+                },
                 dark: {
                     layout: {},
                     colors: {
-                        background: "#0f172a",
-                        table_bg: "#020617",
-                        table_border: "#164e63",
-                        text: "#e0f2f1",
-                        secondary: "#0f766e",
-                        hover: "#115e59",
-                        heading: "#5eead4",
-                        subheading: "#22d3ee",
-                        loading: "#99f6e4",
-                        border: "#164e63",
-                    }
-
-
+                        background: "#000000", // Black background
+                        subheading: "#C4B5FD", // Soft purple subheading (formerly foreground)
+                        heading: "#6D28D9", // Darker purple for headings
+                        primary: {
+                            DEFAULT: "#8B5CF6", // Bright purple primary
+                            foreground: "#FFFFFF",
+                        },
+                        accent: "#7C3AED",
+                        hover: "#581C87", // Dark purple hover effect
+                        text: "#D1D5DB", // Soft gray text color for dark mode
+                    },
                 },
             }
         })

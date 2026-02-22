@@ -1,13 +1,11 @@
 import "@/styles/globals.css";
-import {Metadata, Viewport} from "next";
-import clsx from "clsx";
+import type { Metadata, Viewport } from "next";
 
-import {Providers} from "./providers";
+import { Providers } from "./providers";
+import { siteConfig } from "@/config/site";
 
-import {siteConfig} from "@/config/site";
-import {fontSans} from "@/config/fonts";
-import {Navbar} from "@/components/NavBar"
-import {ThemeSwitcher} from "@/components/ThemeSwitcher";
+import {Navbar} from "@/components/Navbar"
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 export const metadata: Metadata = {
     title: {
@@ -22,35 +20,34 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
     themeColor: [
-        {media: "(prefers-color-scheme: light)", color: "white"},
-        {media: "(prefers-color-scheme: dark)", color: "black"},
+        { media: "(prefers-color-scheme: light)", color: "white" },
+        { media: "(prefers-color-scheme: dark)", color: "black" },
     ],
 };
 
-export default function RootLayout({
-                                       children,
-                                   }: {
-    children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html suppressHydrationWarning lang="en">
-        <head/>
-        <body
-            className={clsx(
-                "min-h-screen text-foreground bg-background font-sans antialiased",
-                fontSans.variable,
-            )}
-        >
-        <Providers themeProps={{attribute: "class", defaultTheme: "dark"}}>
-            <div className="relative flex flex-col h-screen">
+        <html className="m-0 p-0" suppressHydrationWarning lang="en">
+        <body className="min-h-screen text-foreground bg-background font-sans antialiased">
+        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+            <div className="relative flex flex-col min-h-screen">
+
                 <Navbar/>
-                <main className="">
-                    {children}
-                </main>
-                <div className="fixed bottom-4 right-4 z-50">
-                    <ThemeSwitcher className="transition-transform duration-300 hover:scale-110 hover:rotate-12"/>
+
+                <main className="pt-6 px-8 pb-10 flex-1">{children}</main>
+
+                {/* THEME SWITCHER FLOATING BUTTON */}
+                <div
+                    className="
+                fixed
+                bottom-4 right-4
+                sm:bottom-6 sm:right-6
+                md:bottom-8 md:right-8
+                z-50
+              "
+                >
+                    <ThemeSwitcher className="transition-transform duration-300 hover:scale-110 hover:rotate-12 shadow-lg rounded-full" />
                 </div>
-                {/* <Footer/> */}
             </div>
         </Providers>
         </body>
